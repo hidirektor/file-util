@@ -1,12 +1,29 @@
 package me.t3sl4.util.file;
 
 import java.io.*;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Utility class for file operations such as reading, writing, copying, and compressing files.
  */
 public class FileUtil {
+
+    /**
+     * Creates a new empty file at the specified path.
+     * @param filePath Path to the file to be created.
+     * @throws IOException If an I/O error occurs.
+     */
+    public static void createFile(String filePath) throws IOException {
+        File file = new File(filePath);
+        if (file.getParentFile() != null && !file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+    }
 
     /**
      * Reads the content of a file as a string.
