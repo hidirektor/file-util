@@ -6,7 +6,7 @@
 
     <groupId>me.t3sl4.util</groupId>
     <artifactId>file-util</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>File Util</name>
@@ -19,11 +19,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
-        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -56,7 +51,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>me.t3sl4.util.version.VersionUtil</mainClass>
+                            <mainClass>me.t3sl4.util.file.FileUtil</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
