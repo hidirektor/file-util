@@ -2,6 +2,7 @@ package me.t3sl4.util.file;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
@@ -137,8 +138,20 @@ public class FileUtil {
      * @return True if the file is copied successfully.
      * @throws IOException If an I/O error occurs.
      */
-    public static boolean copyFile(String sourcePath, String destPath) throws IOException {
-        Files.copy(Paths.get(sourcePath), Paths.get(destPath), StandardCopyOption.REPLACE_EXISTING);
+    public static boolean copyFile(String sourcePath, String destPath, boolean isOverwrite) throws IOException {
+        Path source = Paths.get(sourcePath);
+        Path destination = Paths.get(destPath);
+
+        if (isOverwrite) {
+            Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+        } else {
+            if (!Files.exists(destination)) {
+                Files.copy(source, destination);
+            } else {
+                return false;
+            }
+        }
+
         return true;
     }
 
