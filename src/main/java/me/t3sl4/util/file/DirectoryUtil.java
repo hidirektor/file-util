@@ -23,6 +23,30 @@ public class DirectoryUtil {
     }
 
     /**
+     * Creates one or more subdirectories inside the given parent directory.
+     * @param parentDir Path to the parent directory.
+     * @param subDirs Names of the subdirectories to create.
+     * @return True if all subdirectories are created successfully.
+     * @throws IOException If an I/O error occurs.
+     */
+    public static boolean createSubDirectory(String parentDir, String... subDirs) throws IOException {
+        Path parentPath = Paths.get(parentDir);
+
+        if (Files.exists(parentPath) && !Files.isDirectory(parentPath)) {
+            throw new IOException("Belirtilen yol bir dosya: " + parentDir);
+        }
+
+        Files.createDirectories(parentPath);
+
+        for (String subDir : subDirs) {
+            Path subDirPath = parentPath.resolve(subDir);
+            Files.createDirectories(subDirPath);
+        }
+
+        return true;
+    }
+
+    /**
      * Deletes a directory and all its contents.
      * @param dirPath Path to the directory.
      * @return True if the directory is deleted.
